@@ -1,77 +1,120 @@
-# Staking Smart Contract Project
+# Staking smart contract
 
-This project implements a decentralized **Staking Protocol** that allows users to deposit tokens to earn rewards over time. The system is designed to be secure, gas-efficient, and transparent.
+ERC20 staking with **multiple admin-configurable plans**, **independent positions** per user, linear APR rewards, optional **early unstake** with **penalty on rewards only**, and **claim** / **unstake** flows.
 
-### Architecture
+## Architecture
 
-The protocol utilizes a single-vault architecture where users interact with a main staking contract. It follows the **Pull-Payment** and **State-Update** patterns to ensure security and scalability.
+- **`Staking.sol`** — main contract.
+  - **`plans`**: `planId → { lockDuration, aprBps, active }`. Templates for **new** stakes only.
+  - **`userPositions`**: `user → Position[]`. Each `stake()` appends one `Position` (no single balance per wallet).
+  - **`Position`**: snapshots `lockDuration` and `aprBps` at stake time so `updatedPlan` does not retroactively change existing positions.
+  - **`stakingToken`**: immutable ERC20 pulled via `transferFrom` on stake and paid out on claim/unstake.
+  - **Access control**: `Ownable` for admin functions; `ReentrancyGuard` on state-changing user entrypoints.
 
-- **Staking Token**: The ERC-20 asset users lock into the contract (e.g., LP tokens or Governance tokens).
-- **Reward Token**: The ERC-20 asset distributed as incentives.
-- **Accounting Logic**: The contract tracks "Reward Per Token" globally and updates individual user "Reward Debts" whenever they interact with the contract (stake, withdraw, or claim).
+Reward liability is covered by tokens already held by the contract (e.g. prefunded rewards or fees). The contract does not mint staking tokens.
 
-**Core Functions:**
-- `stake(uint256 amount)`: Transfers tokens from the user to the contract and updates their rewards.
-- `withdraw(uint256 amount)`: Returns the user's principal.
-- `getReward()`: Transfers accrued rewards to the user's wallet without unstaking.
-- `exit()`: A shortcut to withdraw all staked tokens and claim all rewards in one transaction.
+## Diagram
 
-### Reward Formula
+![Staking Logic Flow](./assets/diagram.jpg)
 
-The contract uses a **time-weighted distribution** mechanism to handle reward calculations in $O(1)$ gas complexity, ensuring gas costs don't increase with the number of participants.
+## Reward formula
 
-**Mathematical Model:**
+Rewards accrue linearly in time:
 
-1. **Global Reward Per Token ($S$):**
-   Registers how many rewards have been earned by each staked token since the start of the program.
-   \[ S_{now} = S_{old} + \frac{R \times (T_{now} - T_{last})}{L} \]
-   *Where $R$ is the Reward Rate, $T$ is time, and $L$ is the Total Supply Staked.*
+- **`aprBps`**: APR in basis points (e.g. `800` = 8% per year).
+- **`BPS_DENOM`**: `10_000`.
+- **`SECONDS_PER_YEAR`**: `365 days` (Solidity `365 days`).
 
-2. **User Earned Rewards:**
-   Calculated by checking the difference between the current global reward index and the index when the user last updated their position.
-   \[ Reward_{user} = (Balance_{user} \times (S_{now} - Index_{user})) + Rewards_{pending} \]
+`claimedRewards` records how much of that accrued stream has already been paid (via `claimRewards` or counted on `unstake`). **Pending** = lifetime accrued at `block.timestamp` minus `claimedRewards`.
 
-### Key Assumptions
+## Key assumptions
 
-- **Decimals**: The contract assumes both Staking and Reward tokens use **18 decimals**. 
-- **Fixed Reward Rate**: Rewards are distributed linearly over a set `duration` defined by the owner.
-- **Trust Minimized**: The owner can set the reward amount but **cannot** access users' staked principal.
-- **No Slashing**: There are no penalties or lock-up periods applied to the principal (unless configured in the constructor).
-- **Reentrancy**: All state-changing functions utilize the `nonReentrant` modifier or follow the Checks-Effects-Interactions pattern.
+1. **Staking token** is a standard ERC20; amounts use token decimals (no USD oracle).
+2. **Contract must hold enough tokens** to pay rewards; rewards are not minted.
+3. **Early unstake**: user always receives **full principal**; **pending rewards** are multiplied by \((1 - \text{penaltyBps}/10{,}000)\). Penalty **forfeiture** stays in the contract.
+4. **`claimRewards` while locked** pays **full** pending rewards (penalty applies on **`unstake`**, not on claim). Adjust in code if product should forbid mid-lock claims.
+5. **Plan changes** after stake do not alter snapshot fields on open positions.
+6. Rounding favors the protocol (integer division).
 
-### How to Deploy
+## Admin functions
 
-The project uses **Hardhat** for deployment.
+- `addedPlan(lockDuration, aprBps)` — new plan, `active = true`.
+- `updatedPlan(planId, lockDuration, aprBps)` — change APR and lock duration for **new** stakes (existing positions keep snapshots).
+- `activatedPlan(planId, active)` — enable or disable accepting new stakes into that plan.
+- `setEarlyUnstakePenaltyBps(penaltyBps)` — max `10_000` (100% of pending rewards).
 
-1. **Initialize Environment**:
-   ```bash
-   cp .env.example .env
-   # Add your PRIVATE_KEY and RPC_URL
+## User functions
 
-2. **Install Dependencies**:
-    ```bash
-    npm install
+- `stake(planId, amount)`
+- `claimRewards(positionIndex)` — claim without unstaking.
+- `unstake(positionIndex)` — principal + rewards (penalty on rewards if still locked).
 
-3. **Deploy**:
-    ```bash
-    npx hardhat run scripts/deploy.ts --network <network_name>
+## View helpers
 
-### How to Test
+Includes `getPlan`, `getUserPosition`, `getUserPositionCount`, `pendingRewards`, `totalAccruedRewards`, `claimedRewardsOf`, `positionPrincipal`, `positionAprBps`, `positionLockDuration`, `positionStakeStart`, `isPositionClosed`, `isPositionLocked`, `positionLockEnd`, `secondsUntilUnlock`, `stakingDurationElapsed`, `previewUnstakeReward`, `previewClaimableRewards`, `isPlanActive`, `contractTokenBalance`, `totalOpenPrincipal`, plus public immutables/constants and `plans` / `planCount` / `userPositions` / `earlyUnstakePenaltyBps`.
 
-A robust suite of tests is included to verify rewards math and edge cases.
+## How to deploy
 
-1. **Run Unit Tests**:
-    ```bash
-    npx hardhat test
+**Constructor:** `Staking(IERC20 stakingTokenAddress, address owner)` — `owner` receives admin rights (`addedPlan`, `updatedPlan`, `activatedPlan`, etc.).
 
-2. **Gas Reporting**: 
+### Hardhat script (`scripts/deploy.js`)
 
-    To see the gas cost of each operation.
-    
-    ```bash
-    REPORT_GAS=true npx hardhat test
+1. `npm install` and `npm run compile`
+2. Run on a network Hardhat knows about (see `hardhat.config.js`).
 
-3. **Coverage Analysis:**:
-    ```bash
-    npx hardhat coverage
+**Local (in-memory):** deploys `MockERC20` automatically if `STAKING_TOKEN` is not set, then deploys `Staking`.
 
+```bash
+npm run deploy
+```
+
+**Local persistent node:** start `npx hardhat node` in one terminal, then:
+
+```bash
+npx hardhat run scripts/deploy.js --network localhost
+```
+
+### Sepolia testnet
+
+1. Copy `.env.example` to `.env` and set:
+   - **`SEPOLIA_RPC_URL`** — Alchemy, Infura, or another Sepolia HTTPS endpoint.
+   - **`PRIVATE_KEY`** — deployer wallet (fund it with Sepolia ETH from a [faucet](https://sepoliafaucet.com/) or search “Sepolia faucet”).
+   - **`STAKING_TOKEN`** — address of an **ERC20 already deployed on Sepolia** (the script does not auto-deploy a mock on testnet).
+   - **`STAKING_OWNER`** (optional) — defaults to the deployer address.
+
+2. Deploy:
+
+```bash
+npm run deploy:sepolia
+```
+
+Equivalent: `npx hardhat run scripts/deploy.js --network sepolia`.
+
+**Other testnets / mainnet:** add a `networks` entry in `hardhat.config.js` (mirror the `sepolia` block) and run with `--network <name>`. Never commit `.env` or keys.
+
+**After deploy**
+
+- Send enough of the **same** ERC20 to the `Staking` contract so it can pay rewards (the contract does not mint).
+- As `owner`, call `addedPlan`, `setEarlyUnstakePenaltyBps`, etc.
+
+### Remix / other tools
+
+Compile `Staking.sol`, deploy with your token address and owner address, then fund the contract with the token.
+
+## How to test
+
+```bash
+npm install
+npm test
+```
+
+Uses Hardhat and `@nomicfoundation/hardhat-toolbox` against `MockERC20` + `Staking`.
+
+## Repository layout
+
+- `contracts/Staking.sol` — staking logic
+- `contracts/MockERC20.sol` — test token
+- `test/Staking.test.js` — tests
+- `hardhat.config.js` — Solidity 0.8.24, optimizer on
+
+`.gitignore` ignores `node_modules`, `artifacts`, `cache`, env files, and common IDE noise.
