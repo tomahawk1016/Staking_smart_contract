@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Hardhat
+cache/
+artifacts/
+typechain-types/
+
+# Foundry (if used alongside)
+out/
+broadcast/
+cache_forge/
+
+# Environment
+.env
+.env.*
+
+# IDE / OS
+.idea/
+.vscode/
+*.log
+.DS_Store
+Thumbs.db
+
+# Coverage
+coverage/
+coverage.json
+
+# Misc
+*.tsbuildinfo
