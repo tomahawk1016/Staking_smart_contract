@@ -5,13 +5,30 @@ import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {
     SafeERC20
 } from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
-import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
-import {
-    ReentrancyGuard
-} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import {Math} from "@openzeppelin/contracts/utils/math/Math.sol";
+import {
+    Initializable
+} from "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
+import {
+    OwnableUpgradeable
+} from "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
+import {
+    ReentrancyGuardUpgradeable
+} from "@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol";
+import {
+    UUPSUpgradeable
+} from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
+import {
+    PausableUpgradeable
+} from "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol";
 
-contract Staking is Ownable, ReentrancyGuard {
+contract Staking is
+    Initializable,
+    OwnableUpgradeable,
+    ReentrancyGuardUpgradeable,
+    UUPSUpgradeable,
+    PausableUpgradeable
+{
     using SafeERC20 for IERC20;
 
     struct Plan {
@@ -29,7 +46,7 @@ contract Staking is Ownable, ReentrancyGuard {
         bool closed;
     }
 
-    IERC20 public immutable stakingToken;
+    IERC20 public stakingToken;
 
     uint256 public planCount;
     uint256 public constant BPS_DENOM = 10_000;
@@ -80,10 +97,35 @@ contract Staking is Ownable, ReentrancyGuard {
     error NothingToClaim();
     error PenaltyTooHigh();
 
-    constructor(IERC20 _stakingToken, address _owner) Ownable(_owner) {
+    constructor() {
+        _disableInitializers();
+    }
+
+    function initialize(
+        IERC20 _stakingToken,
+        address _initialOwner
+    ) public initializer {
+        __Ownable_init();
+        _transferOwnership(_initialOwner);
+        __ReentrancyGuard_init();
+        __UUPSUpgradeable_init();
+        __Pausable_init(); // Initialize Pausable logic
+
         if (address(_stakingToken) == address(0)) revert ZeroAddress();
         stakingToken = _stakingToken;
     }
+
+    function pause() external onlyOwner {
+        _pause();
+    }
+
+    function unpause() external onlyOwner {
+        _unpause();
+    }
+
+    function _authorizeUpgrade(
+        address newImplementation
+    ) internal override onlyOwner {}
 
     function addedPlan(
         uint256 lockDuration,
@@ -128,7 +170,7 @@ contract Staking is Ownable, ReentrancyGuard {
     function stake(
         uint256 planId,
         uint256 amount
-    ) external nonReentrant returns (uint256 positionIndex) {
+    ) external nonReentrant whenNotPaused returns (uint256 positionIndex) {
         if (amount == 0) revert ZeroAmount();
         if (planId >= planCount) revert InvalidPlan();
         Plan storage p = plans[planId];
@@ -150,7 +192,9 @@ contract Staking is Ownable, ReentrancyGuard {
         emit Staked(msg.sender, positionIndex, planId, amount);
     }
 
-    function claimRewards(uint256 positionIndex) external nonReentrant {
+    function claimRewards(
+        uint256 positionIndex
+    ) external nonReentrant whenNotPaused {
         Position storage pos = _loadOpenPosition(msg.sender, positionIndex);
         uint256 pending = _pendingRewards(pos);
         if (pending == 0) revert NothingToClaim();
@@ -161,7 +205,9 @@ contract Staking is Ownable, ReentrancyGuard {
         emit RewardClaimed(msg.sender, positionIndex, pending);
     }
 
-    function unstake(uint256 positionIndex) external nonReentrant {
+    function unstake(
+        uint256 positionIndex
+    ) external nonReentrant whenNotPaused {
         Position storage pos = _loadOpenPosition(msg.sender, positionIndex);
 
         uint256 principal = pos.amount;
