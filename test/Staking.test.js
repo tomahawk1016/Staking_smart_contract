@@ -1,5 +1,5 @@
 const { expect } = require("chai");
-const { ethers } = require("hardhat");
+const { ethers, upgrades } = require("hardhat");
 
 describe("Staking Smart Contract", function () {
   const YEAR = 365n * 24n * 60n * 60n;
@@ -8,19 +8,34 @@ describe("Staking Smart Contract", function () {
   async function deployFixture() {
     const [owner, alice, bob] = await ethers.getSigners();
     const Token = await ethers.getContractFactory("MockERC20");
-    const token = await Token.deploy("Stake Token", "STK", ethers.parseEther("1000000"));
+    const token = await Token.deploy(
+      "Stake Token",
+      "STK",
+      ethers.parseEther("1000000"),
+    );
     await token.waitForDeployment();
 
     const Staking = await ethers.getContractFactory("Staking");
-    const staking = await Staking.deploy(await token.getAddress(), owner.address);
+    const staking = await upgrades.deployProxy(
+      Staking,
+      [await token.getAddress(), owner.address],
+      { initializer: "initialize" },
+    );
     await staking.waitForDeployment();
 
     await token.transfer(alice.address, ethers.parseEther("100000"));
     await token.transfer(bob.address, ethers.parseEther("100000"));
-    await token.connect(alice).approve(await staking.getAddress(), ethers.MaxUint256);
-    await token.connect(bob).approve(await staking.getAddress(), ethers.MaxUint256);
+    await token
+      .connect(alice)
+      .approve(await staking.getAddress(), ethers.MaxUint256);
+    await token
+      .connect(bob)
+      .approve(await staking.getAddress(), ethers.MaxUint256);
 
-    await token.transfer(await staking.getAddress(), ethers.parseEther("500000"));
+    await token.transfer(
+      await staking.getAddress(),
+      ethers.parseEther("500000"),
+    );
 
     return { token, staking, owner, alice, bob };
   }
@@ -105,7 +120,10 @@ describe("Staking Smart Contract", function () {
     const pending = await staking.pendingRewards(alice.address, 0n);
     expect(await staking.isPositionLocked(alice.address, 0n)).to.equal(true);
 
-    const [previewReward, early] = await staking.previewUnstakeReward(alice.address, 0n);
+    const [previewReward, early] = await staking.previewUnstakeReward(
+      alice.address,
+      0n,
+    );
     expect(early).to.equal(true);
     const penalty = (pending * 5000n) / BPS;
     expect(previewReward).to.equal(pending - penalty);
@@ -135,8 +153,14 @@ describe("Staking Smart Contract", function () {
     const { staking, alice } = await deployFixture();
     await staking.addedPlan(1, 100);
     await staking.activedPlan(0n, false);
-    await expect(staking.connect(alice).stake(0n, 1)).to.be.revertedWithCustomError(staking, "PlanInactive");
-    await expect(staking.connect(alice).stake(99n, 1)).to.be.revertedWithCustomError(staking, "InvalidPlan");
-    await expect(staking.connect(alice).stake(0n, 0)).to.be.revertedWithCustomError(staking, "ZeroAmount");
+    await expect(
+      staking.connect(alice).stake(0n, 1),
+    ).to.be.revertedWithCustomError(staking, "PlanInactive");
+    await expect(
+      staking.connect(alice).stake(99n, 1),
+    ).to.be.revertedWithCustomError(staking, "InvalidPlan");
+    await expect(
+      staking.connect(alice).stake(0n, 0),
+    ).to.be.revertedWithCustomError(staking, "ZeroAmount");
   });
 });

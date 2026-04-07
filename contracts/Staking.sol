@@ -97,6 +97,7 @@ contract Staking is
     error NothingToClaim();
     error PenaltyTooHigh();
 
+    /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {
         _disableInitializers();
     }
