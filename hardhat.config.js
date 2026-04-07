@@ -1,5 +1,6 @@
 require("dotenv").config({ quiet: true });
 require("@nomicfoundation/hardhat-toolbox");
+require("@openzeppelin/hardhat-upgrades");
 
 module.exports = {
   solidity: {
