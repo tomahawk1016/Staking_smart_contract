@@ -55,7 +55,9 @@ Includes `getPlan`, `getUserPosition`, `getUserPositionCount`, `pendingRewards`,
 
 ## How to deploy
 
-**Constructor:** `Staking(IERC20 stakingTokenAddress, address owner)` — `owner` receives admin rights (`addedPlan`, `updatedPlan`, `activatedPlan`, etc.).
+This project deploys `Staking` behind a **UUPS proxy**. You interact with the **proxy address**; the implementation (logic) can be upgraded later by the owner.
+
+**Initializer:** `initialize(IERC20 stakingTokenAddress, address owner)` — `owner` receives admin rights (`addedPlan`, `updatedPlan`, `activedPlan`, etc.).
 
 ### Hardhat script (`scripts/deploy.js`)
 
@@ -81,6 +83,7 @@ npx hardhat run scripts/deploy.js --network localhost
    - **`PRIVATE_KEY`** — deployer wallet (fund it with Sepolia ETH from a [faucet](https://sepoliafaucet.com/) or search “Sepolia faucet”).
    - **`STAKING_TOKEN`** — address of an **ERC20 already deployed on Sepolia** (the script does not auto-deploy a mock on testnet).
    - **`STAKING_OWNER`** (optional) — defaults to the deployer address.
+   - **`ETHERSCAN_API_KEY`** (optional but recommended) — for verifying the implementation on Etherscan.
 
 2. Deploy:
 
@@ -94,12 +97,36 @@ Equivalent: `npx hardhat run scripts/deploy.js --network sepolia`.
 
 **After deploy**
 
+- Save the **proxy address** printed by the script. That is the address you use in your UI and for admin calls.
 - Send enough of the **same** ERC20 to the `Staking` contract so it can pay rewards (the contract does not mint).
 - As `owner`, call `addedPlan`, `setEarlyUnstakePenaltyBps`, etc.
 
+#### MockERC20 on Sepolia Etherscan (share this link)
+
+https://sepolia.etherscan.io/address/0x3796825C5bA7A0150AA39b813f97f8DDDc643D6d
+
+#### Staking proxy (dApp / integrations use this) (share this link)
+
+https://sepolia.etherscan.io/address/0x9B716aBa4E4dc07210DA9dD1e97e0fB8c8372599
+
+#### Staking implementation (logic contract) (share this link)
+
+https://sepolia.etherscan.io/address/0xD11263722A4F3092d432D445F2579d25008D7C57
+
+
+### How to upgrade later (UUPS)
+
+1. Implement your changes in `contracts/Staking.sol` (keep storage layout compatible).
+2. Put the deployed proxy address into `.env` as `STAKING_PROXY`.
+3. Upgrade on Sepolia:
+
+```bash
+npm run upgrade:sepolia
+```
+
 ### Remix / other tools
 
-Compile `Staking.sol`, deploy with your token address and owner address, then fund the contract with the token.
+For upgradeable deployments, prefer Hardhat + OpenZeppelin upgrades. If you deploy without a proxy, you lose upgradeability.
 
 ## How to test
 

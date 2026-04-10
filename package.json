@@ -7,8 +7,14 @@
     "test": "hardhat test",
     "coverage": "hardhat coverage",
     "deploy": "hardhat run scripts/deploy.js --network localhost",
+    "deploy:mock:sepolia": "hardhat run scripts/deployMockERC20.js --network sepolia",
     "deploy:sepolia": "hardhat run scripts/deploy.js --network sepolia",
-    "node": "hardhat node"
+    "upgrade:sepolia": "hardhat run scripts/upgrade.js --network sepolia",
+    "node": "hardhat node",
+    "backend:start": "npm --prefix backend start",
+    "backend:dev": "npm --prefix backend run dev",
+    "subgraph:codegen": "npm --prefix subgraph run codegen",
+    "subgraph:build": "npm --prefix subgraph run build"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
