@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-bg-950 text-white antialiased;
+    font-feature-settings: "ss01" on, "ss02" on, "cv11" on;
+  }
+}
+
+@layer utilities {
+  .bg-grid {
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(255,255,255,0.06) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+
+  .glass {
+    @apply bg-surface-900 backdrop-blur-xl border border-white/10;
+  }
+}
+

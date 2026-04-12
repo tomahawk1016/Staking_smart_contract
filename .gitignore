@@ -28,3 +28,10 @@ coverage.json
 
 # Misc
 *.tsbuildinfo
+
+# Backend SQLite (node:sqlite file DB)
+backend/data/
+
+# Subgraph build artifacts
+subgraph/build/
+subgraph/generated/
