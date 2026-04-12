@@ -14,6 +14,8 @@ cache_forge/
 # Environment
 .env
 .env.*
+!.env.example
+!**/.env.example
 
 # IDE / OS
 .idea/
@@ -29,7 +31,7 @@ coverage.json
 # Misc
 *.tsbuildinfo
 
-# Backend SQLite (node:sqlite file DB)
+# Backend local artifacts (legacy SQLite folder, if present)
 backend/data/
 
 # Subgraph build artifacts

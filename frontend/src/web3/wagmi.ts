@@ -1,17 +1,14 @@
-import { createConfig, http } from "wagmi";
+import { createConfig } from "wagmi";
 import { injected } from "wagmi/connectors";
-import { hardhatLocal } from "./chains";
+import { APP_WAGMI_CHAINS, buildTransports } from "../config/networkConfig";
 
 export const config = createConfig({
-  chains: [hardhatLocal],
+  chains: APP_WAGMI_CHAINS,
   connectors: [
     injected({
       target: "metaMask",
     }),
     injected(),
   ],
-  transports: {
-    [hardhatLocal.id]: http(hardhatLocal.rpcUrls.default.http[0]),
-  },
+  transports: buildTransports(),
 });
-

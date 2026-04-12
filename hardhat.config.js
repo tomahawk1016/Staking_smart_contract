@@ -29,6 +29,15 @@ module.exports = {
         return [pk.startsWith("0x") ? pk : `0x${pk}`];
       })(),
     },
+    mainnet: {
+      url: process.env.MAINNET_RPC_URL || "",
+      chainId: 1,
+      accounts: (() => {
+        const pk = process.env.PRIVATE_KEY?.trim();
+        if (!pk) return [];
+        return [pk.startsWith("0x") ? pk : `0x${pk}`];
+      })(),
+    },
   },
   etherscan: {
     apiKey: process.env.ETHERSCAN_API_KEY || "",
