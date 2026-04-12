@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useAccount, useReadContract, useWriteContract } from "wagmi";
 import { isAddressEqual } from "viem";
 import { Card } from "../components/ui/Card";
@@ -8,9 +8,57 @@ import { useContracts } from "../hooks/useContracts";
 import { useAutoRefreshTx } from "../hooks/useAutoRefreshTx";
 import { clampInt } from "../lib/format";
 import { wrongNetworkUserHint } from "../config/networkConfig";
+import { getApiBase } from "../config/api";
+import { useWalletBackendAuth } from "../context/WalletBackendAuthProvider";
+
+type WalletUserRow = {
+  walletAddress: string;
+  registeredAt: string;
+  lastLoginAt: string | null;
+  lastLogoutAt: string | null;
+  state: "logged_in" | "logged_out";
+};
 
 export function AdminPage() {
   const { address, isConnected } = useAccount();
+  const { token, jwtRole, isBackendAuthed } = useWalletBackendAuth();
+  const [walletRows, setWalletRows] = useState<WalletUserRow[]>([]);
+  const [walletUsersLoading, setWalletUsersLoading] = useState(false);
+  const [walletUsersError, setWalletUsersError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!token || jwtRole !== "admin" || !isBackendAuthed) {
+      setWalletRows([]);
+      setWalletUsersError(null);
+      return;
+    }
+    let cancelled = false;
+    (async () => {
+      setWalletUsersLoading(true);
+      setWalletUsersError(null);
+      try {
+        const res = await fetch(`${getApiBase()}/admin/wallet-users`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (!res.ok) {
+          const t = await res.text();
+          throw new Error(t || `HTTP ${res.status}`);
+        }
+        const data = (await res.json()) as WalletUserRow[];
+        if (!cancelled) setWalletRows(Array.isArray(data) ? data : []);
+      } catch (e) {
+        if (!cancelled) {
+          setWalletUsersError(e instanceof Error ? e.message : "Failed to load wallet users.");
+          setWalletRows([]);
+        }
+      } finally {
+        if (!cancelled) setWalletUsersLoading(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [token, jwtRole, isBackendAuthed]);
   const { staking, onSupportedChain } = useContracts();
   const { writeContractAsync, isPending } = useWriteContract();
   const { run, mining } = useAutoRefreshTx();
@@ -214,8 +262,72 @@ export function AdminPage() {
         </div>
       </Card>
     </div>
+
+    {jwtRole === "admin" && isBackendAuthed ? (
+      <Card>
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+          <div>
+            <div className="text-sm font-semibold">Wallet logins</div>
+            <div className="mt-1 text-xs text-white/60">
+              Users who completed wallet verification. State reflects an active server session (JWT not logged out and
+              not expired).
+            </div>
+          </div>
+          <Badge tone="success">Backend admin</Badge>
+        </div>
+
+        {walletUsersLoading ? (
+          <div className="mt-5 text-sm text-white/70">Loading wallet users…</div>
+        ) : walletUsersError ? (
+          <div className="mt-5 rounded-2xl border border-red-500/20 bg-red-500/8 p-4 text-sm text-red-100/85">
+            {walletUsersError}
+          </div>
+        ) : walletRows.length === 0 ? (
+          <div className="mt-5 text-sm text-white/70">No registered wallets yet.</div>
+        ) : (
+          <div className="mt-5 overflow-x-auto rounded-2xl border border-white/10">
+            <table className="w-full min-w-[720px] text-left text-sm">
+              <thead className="border-b border-white/10 bg-white/5 text-xs uppercase tracking-wide text-white/55">
+                <tr>
+                  <th className="px-3 py-3 font-medium">Wallet</th>
+                  <th className="px-3 py-3 font-medium">Registered</th>
+                  <th className="px-3 py-3 font-medium">Last login</th>
+                  <th className="px-3 py-3 font-medium">Last logout</th>
+                  <th className="px-3 py-3 font-medium">State</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-white/10">
+                {walletRows.map((row) => (
+                  <tr key={row.walletAddress} className="bg-white/[0.02]">
+                    <td className="px-3 py-3 font-mono text-xs text-white/90">{row.walletAddress}</td>
+                    <td className="px-3 py-3 text-xs text-white/75">{formatTs(row.registeredAt)}</td>
+                    <td className="px-3 py-3 text-xs text-white/75">{row.lastLoginAt ? formatTs(row.lastLoginAt) : "—"}</td>
+                    <td className="px-3 py-3 text-xs text-white/75">
+                      {row.lastLogoutAt ? formatTs(row.lastLogoutAt) : "—"}
+                    </td>
+                    <td className="px-3 py-3">
+                      <Badge tone={row.state === "logged_in" ? "success" : "neutral"}>
+                        {row.state === "logged_in" ? "Logged in" : "Logged out"}
+                      </Badge>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </Card>
+    ) : null}
     </div>
   );
+}
+
+function formatTs(iso: string): string {
+  try {
+    return new Date(iso).toLocaleString();
+  } catch {
+    return iso;
+  }
 }
 
 function Section({ title, subtitle, children }: { title: string; subtitle: string; children: React.ReactNode }) {
