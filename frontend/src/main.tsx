@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider } from "wagmi";
 import { BrowserRouter } from "react-router-dom";
+import { WalletBackendAuthProvider } from "./context/WalletBackendAuthProvider";
 import { config } from "./web3/wagmi";
 import { App } from "./routes/App";
 import "./styles.css";
@@ -14,7 +15,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
-          <App />
+          <WalletBackendAuthProvider>
+            <App />
+          </WalletBackendAuthProvider>
         </BrowserRouter>
       </QueryClientProvider>
     </WagmiProvider>
