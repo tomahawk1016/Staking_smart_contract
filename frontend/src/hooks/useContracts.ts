@@ -1,24 +1,26 @@
 import { useMemo } from "react";
 import { useAccount } from "wagmi";
-import { CONTRACTS, ERC20_ABI, STAKING_ABI } from "../config/contracts";
+import { zeroAddress } from "viem";
+import { ERC20_ABI, STAKING_ABI } from "../config/contracts";
+import { getContractsForChain } from "../config/networkConfig";
 
 export function useContracts() {
   const { chain } = useAccount();
-  const onSupportedChain = chain?.id === CONTRACTS.chainId;
+  const cfg = getContractsForChain(chain?.id);
+  const onSupportedChain = Boolean(cfg);
 
   return useMemo(
     () => ({
       onSupportedChain,
       staking: {
-        address: CONTRACTS.stakingProxy,
+        address: cfg?.stakingProxy ?? zeroAddress,
         abi: STAKING_ABI,
       },
       token: {
-        address: CONTRACTS.stakingToken,
+        address: cfg?.stakingToken ?? zeroAddress,
         abi: ERC20_ABI,
       },
     }),
-    [onSupportedChain],
+    [onSupportedChain, cfg?.stakingProxy, cfg?.stakingToken],
   );
 }
-

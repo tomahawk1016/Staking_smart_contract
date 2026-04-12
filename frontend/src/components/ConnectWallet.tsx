@@ -1,7 +1,7 @@
 import { useAccount, useConnect, useDisconnect, useSwitchChain } from "wagmi";
-import { hardhatLocal } from "../web3/chains";
 import { Button } from "./ui/Button";
 import { shortAddr } from "../lib/format";
+import { chainLabel, getPreferredChainId, SUPPORTED_CHAIN_IDS } from "../config/networkConfig";
 
 export function ConnectWallet() {
   const { address, isConnected, chain } = useAccount();
@@ -9,7 +9,8 @@ export function ConnectWallet() {
   const { disconnect } = useDisconnect();
   const { switchChain, isPending: switching } = useSwitchChain();
 
-  const wrongNetwork = isConnected && chain?.id !== hardhatLocal.id;
+  const wrongNetwork = isConnected && chain?.id !== undefined && !SUPPORTED_CHAIN_IDS.includes(chain.id);
+  const preferredId = getPreferredChainId();
 
   return (
     <div className="flex items-center gap-3">
@@ -25,9 +26,9 @@ export function ConnectWallet() {
               variant="danger"
               size="sm"
               loading={switching}
-              onClick={() => switchChain({ chainId: hardhatLocal.id })}
+              onClick={() => switchChain({ chainId: preferredId })}
             >
-              Switch to Hardhat
+              Switch to {chainLabel(preferredId)}
             </Button>
           ) : null}
 
@@ -50,4 +51,3 @@ export function ConnectWallet() {
     </div>
   );
 }
-

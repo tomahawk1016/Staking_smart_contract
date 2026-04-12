@@ -6,6 +6,7 @@ import { useInvalidateReadsOnNewBlock } from "../hooks/useInvalidateReadsOnNewBl
 import { formatToken } from "../lib/format";
 import { useMemo } from "react";
 import { Coins, Hourglass, Layers, Wallet } from "lucide-react";
+import { wrongNetworkUserHint } from "../config/networkConfig";
 
 const REALTIME_MS = 2000;
 const PENDING_DIGITS = 6;
@@ -119,7 +120,7 @@ export function OverviewPage() {
       ? "Switch network"
       : walletBal === undefined
         ? "Loading..."
-        : `${formatToken(walletBal, tokenDecimals)} ${tokenSymbol ?? "STK"}`;
+        : `${formatToken(walletBal, tokenDecimals)} ${tokenSymbol ?? "Kom"}`;
 
   return (
     <div className="space-y-6">
@@ -127,13 +128,13 @@ export function OverviewPage() {
         <StatCard
           icon={<Coins className="h-4 w-4 text-brand-300" />}
           label="Total Staked"
-          value={`${formatToken(openPrincipal, tokenDecimals)} ${tokenSymbol ?? "STK"}`}
+          value={`${formatToken(openPrincipal, tokenDecimals)} ${tokenSymbol ?? "Kom"}`}
           hint="Across all open positions"
         />
         <StatCard
           icon={<Hourglass className="h-4 w-4 text-brand-300" />}
           label="Pending Rewards"
-          value={`${formatToken(totalPendingRewards, tokenDecimals, PENDING_DIGITS)} ${tokenSymbol ?? "STK"}`}
+          value={`${formatToken(totalPendingRewards, tokenDecimals, PENDING_DIGITS)} ${tokenSymbol ?? "Kom"}`}
           hint="Across open positions; updates each new block"
         />
         <StatCard
@@ -174,8 +175,8 @@ export function OverviewPage() {
                 openPositions.map((p) => (
                   <div key={p.index.toString()} className="grid grid-cols-4 items-center px-4 py-3 text-sm border-t border-white/10">
                     <div className="text-white/85">#{p.index.toString()}</div>
-                    <div className="text-white/85">{formatToken(p.amount, tokenDecimals)} {tokenSymbol ?? "STK"}</div>
-                    <div className="text-white/85">{formatToken(p.pending, tokenDecimals, PENDING_DIGITS)} {tokenSymbol ?? "STK"}</div>
+                    <div className="text-white/85">{formatToken(p.amount, tokenDecimals)} {tokenSymbol ?? "Kom"}</div>
+                    <div className="text-white/85">{formatToken(p.pending, tokenDecimals, PENDING_DIGITS)} {tokenSymbol ?? "Kom"}</div>
                     <div className="text-white/75">{Number(p.aprBps) / 100}% / {formatLockDaysOnly(p.lockDuration)}</div>
                   </div>
                 ))
@@ -194,8 +195,8 @@ export function OverviewPage() {
                       <div className="font-medium text-white/90">Position #{p.index.toString()}</div>
                       <div className="text-xs text-white/70">{Number(p.aprBps) / 100}% APR</div>
                     </div>
-                    <div className="mt-2 text-white/80">Principal: {formatToken(p.amount, tokenDecimals)} {tokenSymbol ?? "STK"}</div>
-                    <div className="mt-1 text-white/80">Pending: {formatToken(p.pending, tokenDecimals, PENDING_DIGITS)} {tokenSymbol ?? "STK"}</div>
+                    <div className="mt-2 text-white/80">Principal: {formatToken(p.amount, tokenDecimals)} {tokenSymbol ?? "Kom"}</div>
+                    <div className="mt-1 text-white/80">Pending: {formatToken(p.pending, tokenDecimals, PENDING_DIGITS)} {tokenSymbol ?? "Kom"}</div>
                     <div className="mt-1 text-white/70">Lock: {formatLockDaysOnly(p.lockDuration)}</div>
                   </div>
                 ))
@@ -210,15 +211,15 @@ export function OverviewPage() {
 
         <Card>
           <div className="text-sm font-semibold">Network Stats</div>
-          <div className="mt-1 text-xs text-white/60">Local contract health</div>
+          <div className="mt-1 text-xs text-white/60">On-chain contract health</div>
 
           <div className="mt-5 space-y-3">
-            <Row label="TVL (Total Value Locked)" value={`${formatToken(contractBal, tokenDecimals)} ${tokenSymbol ?? "STK"}`} />
+            <Row label="TVL (Total Value Locked)" value={`${formatToken(contractBal, tokenDecimals)} ${tokenSymbol ?? "Kom"}`} />
             <Row label="Active Yield Plans" value="See Stake & Yield" />
             <div className="rounded-2xl border border-white/10 bg-white/4 p-4">
               <div className="text-xs text-white/60">Premium Yield Active</div>
               <div className="mt-2 text-sm text-white/75">
-                You’re on local Hardhat. Add plans from <span className="text-white/85">Admin Panel</span> to enable staking.
+                Add plans from <span className="text-white/85">Admin Panel</span> to enable staking.
               </div>
             </div>
           </div>
@@ -228,9 +229,7 @@ export function OverviewPage() {
       {!onSupportedChain ? (
         <Card className="border border-red-500/20 bg-red-500/8">
           <div className="text-sm font-semibold text-red-100">Wrong network</div>
-          <div className="mt-1 text-sm text-red-100/80">
-            Switch your wallet to <span className="font-medium">Hardhat (31337)</span> so the dApp can read/write locally.
-          </div>
+          <div className="mt-1 text-sm text-red-100/80">{wrongNetworkUserHint()}</div>
         </Card>
       ) : null}
     </div>

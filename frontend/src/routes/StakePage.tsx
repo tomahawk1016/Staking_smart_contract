@@ -8,7 +8,7 @@ import { useContracts } from "../hooks/useContracts";
 import { useInvalidateReadsOnNewBlock } from "../hooks/useInvalidateReadsOnNewBlock";
 import { useAutoRefreshTx } from "../hooks/useAutoRefreshTx";
 import { clampInt, formatToken } from "../lib/format";
-import { ingestStakingTx } from "../lib/apiBackend";
+import { wrongNetworkUserHint } from "../config/networkConfig";
 
 type Plan = { id: bigint; lockDuration: bigint; aprBps: bigint; active: boolean };
 const REALTIME_MS = 2000;
@@ -22,9 +22,7 @@ export function StakePage() {
   const { run, mining } = useAutoRefreshTx();
 
   async function runStakingTx(send: () => Promise<`0x${string}`>) {
-    const hash = await run(send);
-    void ingestStakingTx(hash);
-    return hash;
+    return run(send);
   }
 
   const { data: paused } = useReadContract({
@@ -288,7 +286,7 @@ export function StakePage() {
             </div>
           ) : !onSupportedChain ? (
             <div className="rounded-xl border border-red-500/20 bg-red-500/8 p-3 text-sm text-red-100/85">
-              Switch to Hardhat (31337).
+              {wrongNetworkUserHint()}
             </div>
           ) : (
             <div className="flex flex-col gap-2">
