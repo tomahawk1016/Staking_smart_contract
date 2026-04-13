@@ -1,0 +1,71 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "address", "name": "user", "type": "address" },
+      { "indexed": true, "internalType": "uint256", "name": "positionIndex", "type": "uint256" },
+      { "indexed": true, "internalType": "uint256", "name": "planId", "type": "uint256" },
+      { "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" }
+    ],
+    "name": "Staked",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "address", "name": "user", "type": "address" },
+      { "indexed": true, "internalType": "uint256", "name": "positionIndex", "type": "uint256" },
+      { "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" }
+    ],
+    "name": "RewardClaimed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "address", "name": "user", "type": "address" },
+      { "indexed": true, "internalType": "uint256", "name": "positionIndex", "type": "uint256" },
+      { "indexed": false, "internalType": "uint256", "name": "principal", "type": "uint256" },
+      { "indexed": false, "internalType": "uint256", "name": "rewardPaid", "type": "uint256" },
+      { "indexed": false, "internalType": "bool", "name": "early", "type": "bool" },
+      { "indexed": false, "internalType": "uint256", "name": "penaltyAppliedOnRewards", "type": "uint256" }
+    ],
+    "name": "Unstaked",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "uint256", "name": "planId", "type": "uint256" },
+      { "indexed": false, "internalType": "uint256", "name": "lockDuration", "type": "uint256" },
+      { "indexed": false, "internalType": "uint256", "name": "aprBps", "type": "uint256" }
+    ],
+    "name": "AddedPlan",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "uint256", "name": "planId", "type": "uint256" },
+      { "indexed": false, "internalType": "uint256", "name": "lockDuration", "type": "uint256" },
+      { "indexed": false, "internalType": "uint256", "name": "aprBps", "type": "uint256" }
+    ],
+    "name": "UpdatedPlan",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "uint256", "name": "planId", "type": "uint256" },
+      { "indexed": false, "internalType": "bool", "name": "active", "type": "bool" }
+    ],
+    "name": "ActivedPlan",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [{ "indexed": false, "internalType": "uint256", "name": "penaltyBps", "type": "uint256" }],
+    "name": "EarlyUnstakePenaltyUpdated",
+    "type": "event"
+  }
+]

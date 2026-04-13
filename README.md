@@ -103,15 +103,19 @@ Equivalent: `npx hardhat run scripts/deploy.js --network sepolia`.
 
 #### MockERC20 on Sepolia Etherscan (share this link)
 
-https://sepolia.etherscan.io/address/0x3796825C5bA7A0150AA39b813f97f8DDDc643D6d
+https://sepolia.etherscan.io/address/0x71A8e20013E341B30AA60F60146Da4692319B23a
 
 #### Staking proxy (dApp / integrations use this) (share this link)
 
-https://sepolia.etherscan.io/address/0x9B716aBa4E4dc07210DA9dD1e97e0fB8c8372599
+https://sepolia.etherscan.io/address/0x0A651822fe1e678fBAA3a5c8b50AAcA285C6A6df
 
 #### Staking implementation (logic contract) (share this link)
 
 https://sepolia.etherscan.io/address/0xD11263722A4F3092d432D445F2579d25008D7C57
+
+
+#### subgraph url 
+https://thegraph.com/studio/subgraph/staking/endpoints
 
 
 ### How to upgrade later (UUPS)

@@ -16,7 +16,8 @@
     "backend:start": "npm --prefix backend start",
     "backend:dev": "npm --prefix backend run dev",
     "subgraph:codegen": "npm --prefix subgraph run codegen",
-    "subgraph:build": "npm --prefix subgraph run build"
+    "subgraph:build": "npm --prefix subgraph run build",
+    "subgraph:deploy": "npm --prefix subgraph run deploy"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",

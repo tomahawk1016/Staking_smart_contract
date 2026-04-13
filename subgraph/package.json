@@ -1,0 +1,16 @@
+{
+  "name": "staking-subgraph",
+  "private": true,
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "prepare:deploy": "npm run codegen && npm run build",
+    "deploy": "npm run deploy:studio",
+    "deploy:studio": "node scripts/deploy-studio.cjs"
+  },
+  "devDependencies": {
+    "@graphprotocol/graph-cli": "0.97.1",
+    "@graphprotocol/graph-ts": "0.38.1",
+    "dotenv": "^16.4.5"
+  }
+}
