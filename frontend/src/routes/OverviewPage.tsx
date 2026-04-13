@@ -16,7 +16,12 @@ export function OverviewPage() {
   const { staking, token, onSupportedChain } = useContracts();
   useInvalidateReadsOnNewBlock(onSupportedChain);
 
-  const { data: decimals } = useReadContract({
+  const {
+    data: decimals,
+    isError: decimalsError,
+    error: decimalsErr,
+    isPending: decimalsPending,
+  } = useReadContract({
     ...token,
     functionName: "decimals",
     query: { enabled: onSupportedChain, refetchInterval: REALTIME_MS },
@@ -30,32 +35,50 @@ export function OverviewPage() {
     query: { enabled: onSupportedChain, refetchInterval: REALTIME_MS },
   });
 
-  const { data: walletBal } = useReadContract({
+  const {
+    data: walletBal,
+    isError: balanceError,
+    error: balanceErr,
+    isPending: balancePending,
+  } = useReadContract({
     ...token,
     functionName: "balanceOf",
     args: address ? [address] : undefined,
     query: { enabled: onSupportedChain && !!address, refetchInterval: REALTIME_MS },
   });
 
-  const { data: openPrincipal } = useReadContract({
+  const {
+    data: openPrincipal,
+    isError: principalError,
+    error: principalErr,
+  } = useReadContract({
     ...staking,
     functionName: "totalOpenPrincipal",
     args: address ? [address] : undefined,
     query: { enabled: onSupportedChain && !!address, refetchInterval: REALTIME_MS },
   });
 
-  const { data: posCount } = useReadContract({
+  const { data: posCount, isError: posCountError, error: posCountErr } = useReadContract({
     ...staking,
     functionName: "getUserPositionCount",
     args: address ? [address] : undefined,
     query: { enabled: onSupportedChain && !!address, refetchInterval: REALTIME_MS },
   });
 
-  const { data: contractBal } = useReadContract({
+  const { data: contractBal, isError: tvlError, error: tvlErr } = useReadContract({
     ...staking,
     functionName: "contractTokenBalance",
     query: { enabled: onSupportedChain, refetchInterval: REALTIME_MS },
   });
+
+  const readFailure =
+    decimalsError || balanceError || principalError || posCountError || tvlError;
+  const readFailureDetail =
+    readFailureMessage(decimalsErr) ||
+    readFailureMessage(balanceErr) ||
+    readFailureMessage(principalErr) ||
+    readFailureMessage(posCountErr) ||
+    readFailureMessage(tvlErr);
 
   const posIds = useMemo(() => {
     const n = Number(posCount ?? 0n);
@@ -118,12 +141,30 @@ export function OverviewPage() {
     ? "Connect wallet"
     : !onSupportedChain
       ? "Switch network"
-      : walletBal === undefined
-        ? "Loading..."
-        : `${formatToken(walletBal, tokenDecimals)} ${tokenSymbol ?? "Kom"}`;
+      : readFailure
+        ? "Unavailable"
+        : decimalsPending || balancePending
+          ? "Loading..."
+          : walletBal === undefined
+            ? "Loading..."
+            : `${formatToken(walletBal, tokenDecimals)} ${tokenSymbol ?? "Kom"}`;
 
   return (
     <div className="space-y-6">
+      {onSupportedChain && readFailure ? (
+        <Card className="border border-amber-500/25 bg-amber-500/10">
+          <div className="text-sm font-semibold text-amber-100">On-chain data failed to load</div>
+          <p className="mt-1 text-sm text-amber-100/85">
+            Wallet is connected, but RPC reads failed (wrong contract address, reverted call, or network blocked). Check{" "}
+            <span className="font-mono text-xs">VITE_SEPOLIA_STAKING_PROXY</span> /{" "}
+            <span className="font-mono text-xs">VITE_SEPOLIA_STAKING_TOKEN</span> and{" "}
+            <span className="font-mono text-xs">VITE_SEPOLIA_RPC_URL</span> in <span className="font-mono text-xs">frontend/.env</span>.
+          </p>
+          <p className="mt-2 font-mono text-xs text-amber-100/70 break-all">
+            {readFailureDetail || "RPC error or contract call reverted."}
+          </p>
+        </Card>
+      ) : null}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
         <StatCard
           icon={<Coins className="h-4 w-4 text-brand-300" />}
@@ -272,5 +313,13 @@ function unwrapReadResult<T>(entry: unknown): T | undefined {
     return result;
   }
   return entry as T | undefined;
+}
+
+function readFailureMessage(e: unknown): string {
+  if (e && typeof e === "object" && "shortMessage" in e && typeof (e as { shortMessage: string }).shortMessage === "string") {
+    return (e as { shortMessage: string }).shortMessage;
+  }
+  if (e instanceof Error) return e.message;
+  return "";
 }
 

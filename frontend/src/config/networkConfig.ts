@@ -113,11 +113,15 @@ export function wrongNetworkUserHint(): string {
   return `This app is configured for: ${supportedNetworksSentence()}. Use “Switch network” in the header.`;
 }
 
+const SEPOLIA_HTTP_URL =
+  import.meta.env.VITE_SEPOLIA_RPC_URL?.trim() ||
+  "https://ethereum-sepolia-rpc.publicnode.com";
+
 export function buildTransports(): Record<number, HttpTransport> {
   const out: Record<number, HttpTransport> = {};
   for (const e of ENTRIES) {
     if (e.chain.id === sepolia.id) {
-      out[e.chain.id] = http(import.meta.env.VITE_SEPOLIA_RPC_URL?.trim() || undefined);
+      out[e.chain.id] = http(SEPOLIA_HTTP_URL);
     } else if (e.chain.id === mainnet.id) {
       out[e.chain.id] = http(import.meta.env.VITE_MAINNET_RPC_URL?.trim() || undefined);
     } else {
