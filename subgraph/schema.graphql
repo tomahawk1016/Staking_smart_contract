@@ -1,0 +1,22 @@
+type StakingActivity @entity(immutable: true) {
+  id: ID!
+  """STAKE, CLAIM, UNSTAKE, ADD_PLAN, UPDATE_PLAN, SET_PLAN_ACTIVE, SET_PENALTY_BPS"""
+  activityType: String!
+  """User (staker/claimer) or tx.origin for admin actions."""
+  user: Bytes!
+  planId: BigInt
+  positionIndex: BigInt
+  amount: BigInt
+  principal: BigInt
+  rewardPaid: BigInt
+  early: Boolean
+  penaltyOnRewards: BigInt
+  lockDuration: BigInt
+  aprBps: BigInt
+  planActive: Boolean
+  penaltyBps: BigInt
+  blockNumber: BigInt!
+  timestamp: BigInt!
+  txHash: Bytes!
+  logIndex: BigInt!
+}

@@ -1,8 +1,8 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\contracts\\MockERC20.sol": {
-      "lastModificationDate": 1775715106695,
+    "C:\\Users\\Administrator\\Pictures\\Staking_smart_contract\\contracts\\MockERC20.sol": {
+      "lastModificationDate": 1776055630446,
       "contentHash": "7d7790d8e60ccde5c1b016e79eb97c2b",
       "sourceName": "contracts/MockERC20.sol",
       "solcConfig": {
@@ -40,8 +40,8 @@
         "MockERC20"
       ]
     },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\ERC20.sol": {
-      "lastModificationDate": 1775558191125,
+    "C:\\Users\\Administrator\\Pictures\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\ERC20.sol": {
+      "lastModificationDate": 1776055683687,
       "contentHash": "d15c4d05583536e080f1960ab282772d",
       "sourceName": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
       "solcConfig": {
@@ -82,8 +82,8 @@
         "ERC20"
       ]
     },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\IERC20.sol": {
-      "lastModificationDate": 1775558191125,
+    "C:\\Users\\Administrator\\Pictures\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\IERC20.sol": {
+      "lastModificationDate": 1776055683696,
       "contentHash": "9261adf6457863de3e9892f51317ec89",
       "sourceName": "@openzeppelin/contracts/token/ERC20/IERC20.sol",
       "solcConfig": {
@@ -119,45 +119,8 @@
         "IERC20"
       ]
     },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
-      "lastModificationDate": 1775558191172,
-      "contentHash": "67bfbc07588eb8683b3fd8f6f909563e",
-      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "storageLayout"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "Context"
-      ]
-    },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\interfaces\\draft-IERC6093.sol": {
-      "lastModificationDate": 1775558190860,
+    "C:\\Users\\Administrator\\Pictures\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\interfaces\\draft-IERC6093.sol": {
+      "lastModificationDate": 1776055683657,
       "contentHash": "bcc76f4747d56c28c40ae272ef3470a6",
       "sourceName": "@openzeppelin/contracts/interfaces/draft-IERC6093.sol",
       "solcConfig": {
@@ -195,8 +158,45 @@
         "IERC721Errors"
       ]
     },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\extensions\\IERC20Metadata.sol": {
-      "lastModificationDate": 1775558191125,
+    "C:\\Users\\Administrator\\Pictures\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\utils\\Context.sol": {
+      "lastModificationDate": 1776055683712,
+      "contentHash": "67bfbc07588eb8683b3fd8f6f909563e",
+      "sourceName": "@openzeppelin/contracts/utils/Context.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "Context"
+      ]
+    },
+    "C:\\Users\\Administrator\\Pictures\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\extensions\\IERC20Metadata.sol": {
+      "lastModificationDate": 1776055683694,
       "contentHash": "513778b30d2750f5d2b9b19bbcf748a5",
       "sourceName": "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
       "solcConfig": {
@@ -234,8 +234,8 @@
         "IERC20Metadata"
       ]
     },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\interfaces\\IERC20.sol": {
-      "lastModificationDate": 1775558190860,
+    "C:\\Users\\Administrator\\Pictures\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\interfaces\\IERC20.sol": {
+      "lastModificationDate": 1776055683664,
       "contentHash": "68620db2da7583d9a4919096ac77f577",
       "sourceName": "@openzeppelin/contracts/interfaces/IERC20.sol",
       "solcConfig": {
@@ -271,8 +271,8 @@
       ],
       "artifacts": []
     },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\interfaces\\IERC1363.sol": {
-      "lastModificationDate": 1775558190860,
+    "C:\\Users\\Administrator\\Pictures\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\interfaces\\IERC1363.sol": {
+      "lastModificationDate": 1776055683661,
       "contentHash": "a7fd0f05e36b0d0a21c75340c9c639ec",
       "sourceName": "@openzeppelin/contracts/interfaces/IERC1363.sol",
       "solcConfig": {
@@ -311,8 +311,8 @@
         "IERC1363"
       ]
     },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\interfaces\\IERC165.sol": {
-      "lastModificationDate": 1775558190860,
+    "C:\\Users\\Administrator\\Pictures\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\interfaces\\IERC165.sol": {
+      "lastModificationDate": 1776055683662,
       "contentHash": "947853028399b7de34bcc3704ee06e99",
       "sourceName": "@openzeppelin/contracts/interfaces/IERC165.sol",
       "solcConfig": {
@@ -348,8 +348,8 @@
       ],
       "artifacts": []
     },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\IERC165.sol": {
-      "lastModificationDate": 1775558191219,
+    "C:\\Users\\Administrator\\Pictures\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\utils\\introspection\\IERC165.sol": {
+      "lastModificationDate": 1776055683727,
       "contentHash": "7074c93b1ea0a122063f26ddd1db1032",
       "sourceName": "@openzeppelin/contracts/utils/introspection/IERC165.sol",
       "solcConfig": {
@@ -385,8 +385,8 @@
         "IERC165"
       ]
     },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\utils\\SafeERC20.sol": {
-      "lastModificationDate": 1775558191125,
+    "C:\\Users\\Administrator\\Pictures\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\utils\\SafeERC20.sol": {
+      "lastModificationDate": 1776055683697,
       "contentHash": "bf8e9c3398d381dc66c5302267927386",
       "sourceName": "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol",
       "solcConfig": {
@@ -425,8 +425,8 @@
         "SafeERC20"
       ]
     },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\contracts\\Staking.sol": {
-      "lastModificationDate": 1775717623302,
+    "C:\\Users\\Administrator\\Pictures\\Staking_smart_contract\\contracts\\Staking.sol": {
+      "lastModificationDate": 1776055630446,
       "contentHash": "e40949095ecb962eb6b0cf63f4cfb61a",
       "sourceName": "contracts/Staking.sol",
       "solcConfig": {
@@ -471,8 +471,8 @@
         "Staking"
       ]
     },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol": {
-      "lastModificationDate": 1775719925977,
+    "C:\\Users\\Administrator\\Pictures\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts-upgradeable\\access\\OwnableUpgradeable.sol": {
+      "lastModificationDate": 1776055683748,
       "contentHash": "db24b956904575cc79d02867ec03263c",
       "sourceName": "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol",
       "solcConfig": {
@@ -511,10 +511,10 @@
         "OwnableUpgradeable"
       ]
     },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\utils\\ReentrancyGuard.sol": {
-      "lastModificationDate": 1775558191235,
-      "contentHash": "6e5efb502dd6652d12ad15eea2c5bdf4",
-      "sourceName": "@openzeppelin/contracts/utils/ReentrancyGuard.sol",
+    "C:\\Users\\Administrator\\Pictures\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts-upgradeable\\security\\ReentrancyGuardUpgradeable.sol": {
+      "lastModificationDate": 1776055683867,
+      "contentHash": "efeffcf5034292d7ea635de588c95995",
+      "sourceName": "@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol",
       "solcConfig": {
         "version": "0.8.24",
         "settings": {
@@ -541,19 +541,19 @@
         }
       },
       "imports": [
-        "./StorageSlot.sol"
+        "../proxy/utils/Initializable.sol"
       ],
       "versionPragmas": [
-        "^0.8.20"
+        "^0.8.0"
       ],
       "artifacts": [
-        "ReentrancyGuard"
+        "ReentrancyGuardUpgradeable"
       ]
     },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts-upgradeable\\proxy\\utils\\Initializable.sol": {
-      "lastModificationDate": 1775719924214,
-      "contentHash": "b0970a564d121abf9adfff8d1a01eb16",
-      "sourceName": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
+    "C:\\Users\\Administrator\\Pictures\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts-upgradeable\\security\\PausableUpgradeable.sol": {
+      "lastModificationDate": 1776055683866,
+      "contentHash": "cbe53d6b803c1102081e00b3a0418ea3",
+      "sourceName": "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol",
       "solcConfig": {
         "version": "0.8.24",
         "settings": {
@@ -580,17 +580,18 @@
         }
       },
       "imports": [
-        "../../utils/AddressUpgradeable.sol"
+        "../utils/ContextUpgradeable.sol",
+        "../proxy/utils/Initializable.sol"
       ],
       "versionPragmas": [
-        "^0.8.2"
+        "^0.8.0"
       ],
       "artifacts": [
-        "Initializable"
+        "PausableUpgradeable"
       ]
     },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\utils\\math\\Math.sol": {
-      "lastModificationDate": 1775558191219,
+    "C:\\Users\\Administrator\\Pictures\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\utils\\math\\Math.sol": {
+      "lastModificationDate": 1776055683728,
       "contentHash": "5b8c6935ac52b7494df19d6feb38f5cc",
       "sourceName": "@openzeppelin/contracts/utils/math/Math.sol",
       "solcConfig": {
@@ -629,8 +630,47 @@
         "Math"
       ]
     },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts-upgradeable\\proxy\\utils\\UUPSUpgradeable.sol": {
-      "lastModificationDate": 1775719926207,
+    "C:\\Users\\Administrator\\Pictures\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts-upgradeable\\proxy\\utils\\Initializable.sol": {
+      "lastModificationDate": 1776055683864,
+      "contentHash": "b0970a564d121abf9adfff8d1a01eb16",
+      "sourceName": "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "../../utils/AddressUpgradeable.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.2"
+      ],
+      "artifacts": [
+        "Initializable"
+      ]
+    },
+    "C:\\Users\\Administrator\\Pictures\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts-upgradeable\\proxy\\utils\\UUPSUpgradeable.sol": {
+      "lastModificationDate": 1776055683864,
       "contentHash": "52ef5d6c909d6f8ef3077445d3328eca",
       "sourceName": "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol",
       "solcConfig": {
@@ -670,8 +710,8 @@
         "UUPSUpgradeable"
       ]
     },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts-upgradeable\\utils\\ContextUpgradeable.sol": {
-      "lastModificationDate": 1775719923413,
+    "C:\\Users\\Administrator\\Pictures\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts-upgradeable\\utils\\ContextUpgradeable.sol": {
+      "lastModificationDate": 1776055683904,
       "contentHash": "6200b84950eb05b4a92a39fd1d6e0f9b",
       "sourceName": "@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol",
       "solcConfig": {
@@ -709,542 +749,8 @@
         "ContextUpgradeable"
       ]
     },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\proxy\\utils\\Initializable.sol": {
-      "lastModificationDate": 1775558191110,
-      "contentHash": "2acae54ad209714bca07edf4bae32f72",
-      "sourceName": "@openzeppelin/contracts/proxy/utils/Initializable.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "storageLayout"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "Initializable"
-      ]
-    },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\utils\\StorageSlot.sol": {
-      "lastModificationDate": 1775558191469,
-      "contentHash": "e656d64c4ce918f3d13030b91c935134",
-      "sourceName": "@openzeppelin/contracts/utils/StorageSlot.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "storageLayout"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "StorageSlot"
-      ]
-    },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\utils\\Panic.sol": {
-      "lastModificationDate": 1775558191235,
-      "contentHash": "2133dc13536b4a6a98131e431fac59e1",
-      "sourceName": "@openzeppelin/contracts/utils/Panic.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "storageLayout"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "Panic"
-      ]
-    },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\utils\\math\\SafeCast.sol": {
-      "lastModificationDate": 1775558191219,
-      "contentHash": "f28a38cd37f4225d0a91fb5405dd850f",
-      "sourceName": "@openzeppelin/contracts/utils/math/SafeCast.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "storageLayout"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "SafeCast"
-      ]
-    },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\proxy\\utils\\UUPSUpgradeable.sol": {
-      "lastModificationDate": 1775558191110,
-      "contentHash": "59a325652a58784f0c3050d8b71f8595",
-      "sourceName": "@openzeppelin/contracts/proxy/utils/UUPSUpgradeable.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "storageLayout"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../../interfaces/draft-IERC1822.sol",
-        "../ERC1967/ERC1967Utils.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.22"
-      ],
-      "artifacts": [
-        "UUPSUpgradeable"
-      ]
-    },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\interfaces\\draft-IERC1822.sol": {
-      "lastModificationDate": 1775558190844,
-      "contentHash": "9b2cafd2153b51bcfd7f4cb4cfc975aa",
-      "sourceName": "@openzeppelin/contracts/interfaces/draft-IERC1822.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "storageLayout"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.4.16"
-      ],
-      "artifacts": [
-        "IERC1822Proxiable"
-      ]
-    },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\proxy\\ERC1967\\ERC1967Utils.sol": {
-      "lastModificationDate": 1775558191094,
-      "contentHash": "45c0af7785dd530ca1243ebd7a6fb4c1",
-      "sourceName": "@openzeppelin/contracts/proxy/ERC1967/ERC1967Utils.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "storageLayout"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../beacon/IBeacon.sol",
-        "../../interfaces/IERC1967.sol",
-        "../../utils/Address.sol",
-        "../../utils/StorageSlot.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.21"
-      ],
-      "artifacts": [
-        "ERC1967Utils"
-      ]
-    },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\utils\\Address.sol": {
-      "lastModificationDate": 1775558191156,
-      "contentHash": "44f61b7a5cd41aa205efaebb4686f797",
-      "sourceName": "@openzeppelin/contracts/utils/Address.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "storageLayout"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./Errors.sol",
-        "./LowLevelCall.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "Address"
-      ]
-    },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\interfaces\\IERC1967.sol": {
-      "lastModificationDate": 1775558190860,
-      "contentHash": "3c9577899f440b0c66e880c96e9250bb",
-      "sourceName": "@openzeppelin/contracts/interfaces/IERC1967.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "storageLayout"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.4.11"
-      ],
-      "artifacts": [
-        "IERC1967"
-      ]
-    },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\proxy\\beacon\\IBeacon.sol": {
-      "lastModificationDate": 1775558191094,
-      "contentHash": "ee2e46607ed2be58bd554306d068acba",
-      "sourceName": "@openzeppelin/contracts/proxy/beacon/IBeacon.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "storageLayout"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.4.16"
-      ],
-      "artifacts": [
-        "IBeacon"
-      ]
-    },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\utils\\Errors.sol": {
-      "lastModificationDate": 1775558191219,
-      "contentHash": "6b5eac2b85500c3012977849cfd633d8",
-      "sourceName": "@openzeppelin/contracts/utils/Errors.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "storageLayout"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "Errors"
-      ]
-    },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\utils\\LowLevelCall.sol": {
-      "lastModificationDate": 1775558191219,
-      "contentHash": "0474caccabcd255a35c82fe878701271",
-      "sourceName": "@openzeppelin/contracts/utils/LowLevelCall.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "storageLayout"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.20"
-      ],
-      "artifacts": [
-        "LowLevelCall"
-      ]
-    },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts-upgradeable\\security\\ReentrancyGuardUpgradeable.sol": {
-      "lastModificationDate": 1775719926046,
-      "contentHash": "efeffcf5034292d7ea635de588c95995",
-      "sourceName": "@openzeppelin/contracts-upgradeable/security/ReentrancyGuardUpgradeable.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "storageLayout"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../proxy/utils/Initializable.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "ReentrancyGuardUpgradeable"
-      ]
-    },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts-upgradeable\\security\\PausableUpgradeable.sol": {
-      "lastModificationDate": 1775719925991,
-      "contentHash": "cbe53d6b803c1102081e00b3a0418ea3",
-      "sourceName": "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "storageLayout"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "../utils/ContextUpgradeable.sol",
-        "../proxy/utils/Initializable.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "PausableUpgradeable"
-      ]
-    },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts-upgradeable\\utils\\AddressUpgradeable.sol": {
-      "lastModificationDate": 1775719923391,
+    "C:\\Users\\Administrator\\Pictures\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts-upgradeable\\utils\\AddressUpgradeable.sol": {
+      "lastModificationDate": 1776055683902,
       "contentHash": "c30c805386fda8a42ff515da963d3a95",
       "sourceName": "@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol",
       "solcConfig": {
@@ -1280,8 +786,82 @@
         "AddressUpgradeable"
       ]
     },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts-upgradeable\\interfaces\\draft-IERC1822Upgradeable.sol": {
-      "lastModificationDate": 1775719923541,
+    "C:\\Users\\Administrator\\Pictures\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\utils\\Panic.sol": {
+      "lastModificationDate": 1776055683731,
+      "contentHash": "2133dc13536b4a6a98131e431fac59e1",
+      "sourceName": "@openzeppelin/contracts/utils/Panic.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "Panic"
+      ]
+    },
+    "C:\\Users\\Administrator\\Pictures\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts\\utils\\math\\SafeCast.sol": {
+      "lastModificationDate": 1776055683728,
+      "contentHash": "f28a38cd37f4225d0a91fb5405dd850f",
+      "sourceName": "@openzeppelin/contracts/utils/math/SafeCast.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.20"
+      ],
+      "artifacts": [
+        "SafeCast"
+      ]
+    },
+    "C:\\Users\\Administrator\\Pictures\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts-upgradeable\\interfaces\\draft-IERC1822Upgradeable.sol": {
+      "lastModificationDate": 1776055683843,
       "contentHash": "a6883cfd85607b16c121a02728369eb3",
       "sourceName": "@openzeppelin/contracts-upgradeable/interfaces/draft-IERC1822Upgradeable.sol",
       "solcConfig": {
@@ -1317,8 +897,8 @@
         "IERC1822ProxiableUpgradeable"
       ]
     },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts-upgradeable\\proxy\\ERC1967\\ERC1967UpgradeUpgradeable.sol": {
-      "lastModificationDate": 1775719923664,
+    "C:\\Users\\Administrator\\Pictures\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts-upgradeable\\proxy\\ERC1967\\ERC1967UpgradeUpgradeable.sol": {
+      "lastModificationDate": 1776055683862,
       "contentHash": "2587366284baa690cce0accaca1a20f9",
       "sourceName": "@openzeppelin/contracts-upgradeable/proxy/ERC1967/ERC1967UpgradeUpgradeable.sol",
       "solcConfig": {
@@ -1361,45 +941,8 @@
         "ERC1967UpgradeUpgradeable"
       ]
     },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts-upgradeable\\utils\\StorageSlotUpgradeable.sol": {
-      "lastModificationDate": 1775719926192,
-      "contentHash": "02cf959b00ba5c650708472f195f8b29",
-      "sourceName": "@openzeppelin/contracts-upgradeable/utils/StorageSlotUpgradeable.sol",
-      "solcConfig": {
-        "version": "0.8.24",
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "evmVersion": "paris",
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "storageLayout"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "StorageSlotUpgradeable"
-      ]
-    },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts-upgradeable\\interfaces\\IERC1967Upgradeable.sol": {
-      "lastModificationDate": 1775719924043,
+    "C:\\Users\\Administrator\\Pictures\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts-upgradeable\\interfaces\\IERC1967Upgradeable.sol": {
+      "lastModificationDate": 1776055683848,
       "contentHash": "a5421a5e611067b9202e83329fbf6fc7",
       "sourceName": "@openzeppelin/contracts-upgradeable/interfaces/IERC1967Upgradeable.sol",
       "solcConfig": {
@@ -1435,8 +978,8 @@
         "IERC1967Upgradeable"
       ]
     },
-    "C:\\Users\\star\\Documents\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts-upgradeable\\proxy\\beacon\\IBeaconUpgradeable.sol": {
-      "lastModificationDate": 1775719923991,
+    "C:\\Users\\Administrator\\Pictures\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts-upgradeable\\proxy\\beacon\\IBeaconUpgradeable.sol": {
+      "lastModificationDate": 1776055683861,
       "contentHash": "21bffd733b4ca013e125a0ffe2e52254",
       "sourceName": "@openzeppelin/contracts-upgradeable/proxy/beacon/IBeaconUpgradeable.sol",
       "solcConfig": {
@@ -1470,6 +1013,43 @@
       ],
       "artifacts": [
         "IBeaconUpgradeable"
+      ]
+    },
+    "C:\\Users\\Administrator\\Pictures\\Staking_smart_contract\\node_modules\\@openzeppelin\\contracts-upgradeable\\utils\\StorageSlotUpgradeable.sol": {
+      "lastModificationDate": 1776055683917,
+      "contentHash": "02cf959b00ba5c650708472f195f8b29",
+      "sourceName": "@openzeppelin/contracts-upgradeable/utils/StorageSlotUpgradeable.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "storageLayout"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "StorageSlotUpgradeable"
       ]
     }
   }

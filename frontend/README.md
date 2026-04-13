@@ -2,8 +2,8 @@
 
 This frontend is wired to your **local Hardhat node** and your deployed addresses:
 
-- **MockERC20 (STK)**: `0x5FC8d32690cc91D4c39d9d3abcBD16989F875707`
-- **Staking Proxy (use this)**: `0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6`
+- **MockERC20 (STK)**: `0x71A8e20013E341B30AA60F60146Da4692319B23a`
+- **Staking Proxy (use this)**: `0x0A651822fe1e678fBAA3a5c8b50AAcA285C6A6df`
 - **Chain**: Hardhat `31337` (RPC: `http://127.0.0.1:8545`)
 
 ## Run

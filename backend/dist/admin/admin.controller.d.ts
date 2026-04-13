@@ -3,4 +3,5 @@ export declare class AdminController {
     private readonly admin;
     constructor(admin: AdminService);
     walletUsers(): Promise<import("./admin.service").WalletUserRow[]>;
+    stakingActivities(first: number, skip: number): Promise<import("./admin.service").StakingActivityRow[]>;
 }

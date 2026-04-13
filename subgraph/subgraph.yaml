@@ -1,0 +1,39 @@
+specVersion: 1.3.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Staking
+    network: sepolia
+    source:
+      address: "0x0A651822fe1e678fBAA3a5c8b50AAcA285C6A6df"
+      abi: Staking
+      # Replace with the block where the proxy was deployed (explorer → contract creation tx).
+      startBlock: 10649319
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.9
+      language: wasm/assemblyscript
+      entities:
+        - StakingActivity
+      abis:
+        - name: Staking
+          file: ./abis/Staking.json
+      eventHandlers:
+        - event: Staked(indexed address,indexed uint256,indexed uint256,uint256)
+          handler: handleStaked
+        - event: RewardClaimed(indexed address,indexed uint256,uint256)
+          handler: handleRewardClaimed
+        - event: Unstaked(indexed address,indexed uint256,uint256,uint256,bool,uint256)
+          handler: handleUnstaked
+        - event: AddedPlan(indexed uint256,uint256,uint256)
+          handler: handleAddedPlan
+        - event: UpdatedPlan(indexed uint256,uint256,uint256)
+          handler: handleUpdatedPlan
+        - event: ActivedPlan(indexed uint256,bool)
+          handler: handleActivedPlan
+        - event: EarlyUnstakePenaltyUpdated(uint256)
+          handler: handleEarlyUnstakePenaltyUpdated
+      file: ./src/mapping.ts

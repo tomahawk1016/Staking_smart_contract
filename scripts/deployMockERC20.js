@@ -29,10 +29,10 @@ async function main() {
   const token = await MockERC20.deploy(name, symbol, initialSupply);
   await token.waitForDeployment();
 
-  const mock = await ethers.getContractAt("MockERC20", "0x12007b18e3E9912bB6869B2e0747Bed598E3aAbd");
-  await mock.transfer("0x4E34939B06Fc695b4a1C39b8A1f947f3A9e8930c", ethers.parseEther("2000000"));
-  await mock.transfer("0x24f76c9c3676d63E5fC11054c40de4e3eB6CF10d", ethers.parseEther("5000000"));
-  await mock.transfer("0xAbd8E84Fce6Bec08a32F7d2526e8f9A4a95CA506", ethers.parseEther("60000000"));
+  const mock = await ethers.getContractAt("MockERC20", "0x51922Bb52276e09465770A068eBCdf35Aa0dAA6F");
+  // await mock.transfer("0x52D5C24A6c956a75b0F625748D612D63EA16A1C2", ethers.parseEther("2000000"));
+  // await mock.transfer("0xB5506fA9a43Bd02d595817Ea152439135eCc9d81", ethers.parseEther("5000000"));
+  // await mock.transfer("0x85a8bB7E6126805D36817898Cee24930e1CD6187", ethers.parseEther("30000000"));
 
  
   const address = await token.getAddress();

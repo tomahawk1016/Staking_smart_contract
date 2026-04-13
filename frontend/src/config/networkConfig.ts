@@ -17,14 +17,14 @@ function parseAddr(v: string | undefined, fallback: `0x${string}`): `0x${string}
 
 /** Matches README / `.openzeppelin/sepolia.json` — override with VITE_SEPOLIA_* if you redeploy. */
 const SEPOLIA_DEFAULT: AppChainContracts = {
-  stakingProxy: "0x9B716aBa4E4dc07210DA9dD1e97e0fB8c8372599",
-  stakingToken: "0x3796825C5bA7A0150AA39b813f97f8DDDc643D6d",
+  stakingProxy: "0x0A651822fe1e678fBAA3a5c8b50AAcA285C6A6df",
+  stakingToken: "0x71A8e20013E341B30AA60F60146Da4692319B23a",
 };
 
 /** Local Hardhat defaults from this repo’s sample deploy; override with VITE_LOCALHOST_*. */
 const LOCAL_DEFAULT: AppChainContracts = {
-  stakingProxy: "0x9B716aBa4E4dc07210DA9dD1e97e0fB8c8372599",
-  stakingToken: "0x3796825C5bA7A0150AA39b813f97f8DDDc643D6d",
+  stakingProxy: "0x0A651822fe1e678fBAA3a5c8b50AAcA285C6A6df",
+  stakingToken: "0x71A8e20013E341B30AA60F60146Da4692319B23a",
 };
 
 function buildNetworkEntries(): NetworkEntry[] {
