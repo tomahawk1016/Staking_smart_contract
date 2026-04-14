@@ -141,6 +141,47 @@ npm test
 
 Uses Hardhat and `@nomicfoundation/hardhat-toolbox` against `MockERC20` + `Staking`.
 
+## Deploy frontend (Vercel)
+
+### What Vercel is good at (in plain terms)
+
+- **Static sites** (your Vite `npm run build` output): HTML/JS/CSS. **This is your `frontend/`.**
+- **Optional “serverless” functions**: short-lived HTTP handlers, not a always-on Node process like `nest start` on your laptop.
+
+Your **Nest backend** uses a **normal HTTP server** (`app.listen`), **PostgreSQL**, and **JWT sessions**. That pattern is a **traditional web API**. Vercel *can* host APIs, but not by simply pointing Vercel at your existing `backend/` folder—you would need a **separate, advanced setup** (serverless entry, cold starts, DB pooling). For most teams, **frontend on Vercel + API on a Node host** is the straightforward “they work together” approach.
+
+### “Frontend and backend together on Vercel” — what that really means
+
+| Goal | Realistic setup |
+|------|-------------------|
+| **Same product, minimal pain** | **Frontend:** Vercel. **Backend:** Railway, Render, Fly.io, or any VPS with Node + Postgres. Same browser: the SPA calls your API via `VITE_API_URL`. |
+| **Everything under vercel.com URLs** | Possible with **two Vercel projects** (e.g. `app.vercel.app` + `api.vercel.app`) *only if* the API is adapted to Vercel’s serverless model—not this repo’s default `main.ts` as-is. |
+| **Single Vercel project, one Deploy button** | **Not** a good fit for **Vite + long-running Nest + Postgres** without major restructuring. |
+
+So: **deploy them “together” in the sense of one app**, not **one Vercel project type**. Use **Vercel for the UI** and **any Node+Postgres host for the API**; connect them with **`VITE_API_URL`** and **`FRONTEND_ORIGIN`**.
+
+### Backend env on your API host (not Vercel, unless you adapt Nest)
+
+Copy the same variables you use in `backend/.env` locally: `DATABASE_URL`, `JWT_SECRET`, `ADMIN_ADDRESSES`, `SUBGRAPH_QUERY_URL`, etc. Set **`FRONTEND_ORIGIN`** to your Vercel frontend URL. Start with **`npm run build`** then **`node dist/main.js`** (or the host’s “start command”).
+
+**Only the `frontend/` app belongs on Vercel** as a default static Vite build. The Nest `backend/` is easiest on Railway, Render, Fly.io, etc.
+
+### Option A — Root directory `frontend` (simplest in the Vercel UI)
+
+1. Import the Git repo.
+2. **Root Directory** → **Edit** → set to **`frontend`** (not `./`).
+3. **Framework Preset** → **Vite** (or leave “Other” and confirm Vite is detected).
+4. **Build Command** → `npm run build` (default).
+5. **Output Directory** → **`dist`** (Vite default).
+6. **Environment Variables** (Production): add `VITE_*` vars your app needs, especially **`VITE_API_URL`** pointing to your deployed API (must include `/api`, e.g. `https://api.example.com/api`).
+7. **Deploy** — do **not** use the NestJS preset for the whole monorepo.
+
+### Option B — Root directory `.` (repository root)
+
+Use the root **`vercel.json`** in this repo: it installs and builds `frontend` and sets **`outputDirectory`** to **`frontend/dist`**, plus SPA rewrites. No need to change Root Directory if Vercel reads this file.
+
+**After deploy:** set **`FRONTEND_ORIGIN`** on your Nest backend to your Vercel site URL (e.g. `https://staking.vercel.app`) so CORS allows the browser to call the API.
+
 ## Repository layout
 
 - `contracts/Staking.sol` — staking logic
