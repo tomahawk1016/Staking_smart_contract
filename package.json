@@ -14,7 +14,8 @@
     "upgrade:mainnet": "hardhat run scripts/upgrade.js --network mainnet",
     "node": "hardhat node",
     "backend:start": "npm --prefix backend start",
-    "backend:dev": "npm --prefix backend run dev",
+    "backend": "npm run dev --prefix backend",
+    "frontend": "npm run dev --prefix frontend",
     "subgraph:codegen": "npm --prefix subgraph run codegen",
     "subgraph:build": "npm --prefix subgraph run build",
     "subgraph:deploy": "npm --prefix subgraph run deploy"
